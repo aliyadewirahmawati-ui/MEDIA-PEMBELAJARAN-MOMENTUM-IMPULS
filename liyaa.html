@@ -1849,26 +1849,7 @@
             showScreen('screen-rules');
         };
 
-        // Go to material content (show material panel on home screen)
-        window.goToMaterial = () => {
-            showScreen('screen-home');
-            // reveal material panel and scroll into view
-            const el = document.getElementById('home-material');
-            if (el) {
-                el.classList.remove('hidden');
-                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        };
-
-        window.closeHomeMaterial = () => {
-            const el = document.getElementById('home-material');
-            if (el) el.classList.add('hidden');
-        };
-
-        // Skip material and go directly to rules
-        window.skipMaterialAndPlay = () => {
-            showScreen('screen-rules');
-        };
+        // (material feature removed)
 
         window.startGame = async () => {
              // Backup: Cek lagi audio context (kadang di mobile perlu double check)
