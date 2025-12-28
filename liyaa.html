@@ -577,6 +577,25 @@
                 </button>
             </div>
 
+            <!-- PILIHAN MATERIAL -->
+            <div id="screen-material-choice" class="hidden glass-panel p-8 text-center max-w-lg mx-auto pointer-events-auto">
+                <h1 class="text-3xl font-black text-blue-600 mb-6 tracking-tighter" style="-webkit-text-stroke: 2px black;">📚 MATERI PEMBELAJARAN</h1>
+                
+                <p class="text-gray-800 font-bold mb-8 text-lg">Apakah kamu ingin membaca materi tentang Momentum dan Impuls sebelum bermain?</p>
+                
+                <div class="flex flex-col gap-4">
+                    <button onclick="goToMaterial()" class="btn-3d bg-blue-400 text-white font-black py-4 px-8 rounded-xl text-lg w-full uppercase border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        📖 Baca Material Dulu
+                    </button>
+                    <button onclick="skipMaterialAndPlay()" class="btn-3d bg-green-500 text-white font-black py-4 px-8 rounded-xl text-lg w-full uppercase border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        ⚡ Langsung Bermain
+                    </button>
+                    <button onclick="goHome()" class="btn-3d bg-gray-400 text-white font-black py-3 px-8 rounded-xl text-base w-full uppercase border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                        ← Kembali
+                    </button>
+                </div>
+            </div>
+
             <!-- PERATURAN GAME -->
             <div id="screen-rules" class="hidden glass-panel p-8 text-center max-w-lg mx-auto pointer-events-auto">
                 <h1 class="text-3xl font-black text-blue-600 mb-6 tracking-tighter" style="-webkit-text-stroke: 2px black;">PERATURAN GAME</h1>
@@ -1796,7 +1815,7 @@
         }
 
         function showScreen(id) {
-            ['screen-home', 'screen-map', 'screen-char', 'screen-video', 'screen-quiz', 'screen-gameover', 'screen-finish-message', 'screen-nextlevel', 'screen-rules'].forEach(s => {
+            ['screen-home', 'screen-map', 'screen-char', 'screen-video', 'screen-quiz', 'screen-gameover', 'screen-finish-message', 'screen-nextlevel', 'screen-rules', 'screen-material-choice'].forEach(s => {
                 const el = document.getElementById(s); if(el) el.classList.add('hidden');
             });
             if (id !== 'none') document.getElementById(id).classList.remove('hidden');
@@ -1853,13 +1872,23 @@
         window.selectLevel = (lvl) => {
             if (lvl <= state.maxLevel) {
                 state.currentLevel = lvl;
-                showScreen('screen-rules');
+                showScreen('screen-material-choice');
             }
         };
 
         // Map NEXT button handler: start current unlocked level
         window.mapNext = () => {
             state.currentLevel = state.maxLevel || 1;
+            showScreen('screen-material-choice');
+        };
+        
+        // Go to material content (video tutorial)
+        window.goToMaterial = () => {
+            showScreen('screen-video');
+        };
+        
+        // Skip material and go directly to rules
+        window.skipMaterialAndPlay = () => {
             showScreen('screen-rules');
         };
 
